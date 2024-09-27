@@ -1,7 +1,35 @@
+/* Light Mode Styles */
+body {
+    background-color: rgb(255, 255, 255); /* White background for light mode */
+    color: rgb(0, 0, 0); /* Text color for light mode */
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: rgb(238, 238, 238); /* Dark background */
+    color: rgb(11, 11, 11); /* Light text color */
+}
+
+/* Additional styles for navbar and buttons in dark mode */
+.dark-mode .navbar {
+    background-color: #222; /* Dark navbar */
+}
+
+.dark-mode .navbar__btn a,
+.dark-mode .navbar__btn button {
+    color: #fff; /* Light text for buttons in dark mode */
+}
+
+.dark-mode .button {
+    background-color: #676767; /* Maintain button color */
+}
+
+/*------------------------------------------------ */
+
 /* Basic Body Styling */
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background-color: rgb(148, 217, 228);
+    background-color: rgb(43, 48, 48);
     margin: 0;
     padding: 0;
 }
@@ -143,8 +171,8 @@ h1 {
 }
 
 .button:hover {
-    background-color: #fff;
-    color: #676767;
+    background-color: #e0ae16;
+    color: #ffffff;
     transform: scale(1.1);
     transition: transform 0.2s ease-in-out, background-color 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -235,7 +263,6 @@ h2 {
     margin-right: 0px; /* Adjust to bring brackets closer */
     margin-left: 0px; /* Adjust to bring brackets closer */
 }
-
 
 /* Responsive for Mobile Devices */
 @media (max-width: 960px) {

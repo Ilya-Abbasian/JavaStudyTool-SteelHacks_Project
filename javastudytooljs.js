@@ -1,3 +1,25 @@
+// Toggle light/dark mode
+const themeToggleButton = document.getElementById('theme-toggle');
+
+themeToggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode'); // Toggle the dark-mode class
+
+    // Update the button text
+    if (document.body.classList.contains('dark-mode')) {
+        themeToggleButton.textContent = 'Light Mode'; // Change to light mode
+    } else {
+        themeToggleButton.textContent = 'Dark Mode'; // Change to dark mode
+    }
+});
+
+// Show the array section when the array button is clicked
+document.getElementById("array-btn").addEventListener("click", function() {
+    document.getElementById("array-section").style.display = "block";
+});
+
+
+
+
 // Show the array section when the array button is clicked
 document.getElementById("array-btn").addEventListener("click", function() {
     document.getElementById("array-section").style.display = "block";
