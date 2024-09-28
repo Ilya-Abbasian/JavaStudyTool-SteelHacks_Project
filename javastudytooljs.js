@@ -2,12 +2,21 @@
 document.getElementById("array-btn").addEventListener("click", function() {
     document.getElementById("array-section").style.display = "block";
     document.getElementById("linkedlist-section").style.display = "none";
+    document.getElementById("tree-section").style.display = "none"; // Hide tree section
 });
 
 // Show linked list section when the button is clicked
 document.getElementById("linkedlist-btn").addEventListener("click", function() {
     document.getElementById("linkedlist-section").style.display = "block";
     document.getElementById("array-section").style.display = "none";
+    document.getElementById("tree-section").style.display = "none"; // Hide tree section
+});
+
+// Show tree section when the button is clicked
+document.getElementById("tree-btn").addEventListener("click", function() {
+    document.getElementById("tree-section").style.display = "block";
+    document.getElementById("array-section").style.display = "none";
+    document.getElementById("linkedlist-section").style.display = "none"; // Hide other sections
 });
 
 // Create interactive array and make it draggable
@@ -29,7 +38,6 @@ document.getElementById("create-array-btn").addEventListener("click", function()
 
     const arrayContainer = document.createElement("div");
     arrayContainer.classList.add("bracketed-array-container");
-
     arrayContainer.setAttribute("draggable", "true");
 
     const leftBracket = document.createElement("span");
@@ -160,4 +168,97 @@ document.getElementById("create-linkedlist-btn").addEventListener("click", funct
 document.getElementById("clear-linklist-btn").addEventListener("click", function() {
     const linkedlistDisplay = document.getElementById("linkedlist-display");
     linkedlistDisplay.innerHTML = ''; // Clear the entire display
+});
+
+// Binary Search Tree Node class
+class TreeNode {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+// Function to insert node into the tree
+function insertNode(root, value) {
+    if (value < root.value) {
+        if (root.left === null) {
+            root.left = new TreeNode(value);
+        } else {
+            insertNode(root.left, value);
+        }
+    } else {
+        if (root.right === null) {
+            root.right = new TreeNode(value);
+        } else {
+            insertNode(root.right, value);
+        }
+    }
+}
+
+// Function to create tree elements dynamically in the DOM
+function createTreeNodeElement(value) {
+    const nodeElement = document.createElement("div");
+    nodeElement.classList.add("tree-node");
+    
+    const inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.value = value;
+    inputField.disabled = true;
+    inputField.classList.add("tree-node-input");
+
+    nodeElement.appendChild(inputField);
+    return nodeElement;
+}
+
+// Function to render the tree in the DOM
+function renderTree(tree, parentElement) {
+    if (!tree) return;
+
+    const nodeElement = createTreeNodeElement(tree.value);
+    parentElement.appendChild(nodeElement);
+
+    const childrenContainer = document.createElement("div");
+    childrenContainer.classList.add("children-container");
+    parentElement.appendChild(childrenContainer);
+
+    if (tree.left) {
+        const leftBranch = document.createElement("div");
+        leftBranch.classList.add("tree-branch-left");
+        childrenContainer.appendChild(leftBranch);
+        renderTree(tree.left, leftBranch);
+    }
+
+    if (tree.right) {
+        const rightBranch = document.createElement("div");
+        rightBranch.classList.add("tree-branch-right");
+        childrenContainer.appendChild(rightBranch);
+        renderTree(tree.right, rightBranch);
+    }
+}
+
+// Initialize tree root as null
+let treeRoot = null;
+
+// Handle adding nodes to the tree
+document.getElementById("add-node-btn").addEventListener("click", function() {
+    const value = parseInt(document.getElementById("tree-value").value);
+    if (isNaN(value)) return;
+
+    if (treeRoot === null) {
+        treeRoot = new TreeNode(value);
+    } else {
+        insertNode(treeRoot, value);
+    }
+
+    const treeDisplay = document.getElementById("tree-display");
+    treeDisplay.innerHTML = ''; // Clear current tree display
+    renderTree(treeRoot, treeDisplay); // Re-render the tree
+});
+
+// Clear all trees
+document.getElementById("clear-tree-btn").addEventListener("click", function() {
+    const treeDisplay = document.getElementById("tree-display");
+    treeDisplay.innerHTML = ''; // Clear the entire display
+    treeRoot = null; // Reset tree root
 });

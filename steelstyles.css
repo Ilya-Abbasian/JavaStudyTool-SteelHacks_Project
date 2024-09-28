@@ -1,7 +1,7 @@
 /* Basic Body Styling */
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background-color: rgb(61, 63, 65);
+    background-color: rgb(186, 193, 201);
     margin: 0;
     padding: 0;
 }
@@ -122,6 +122,10 @@ h2 {
     padding: 10px;
     position: relative;
     margin-top: 20px;
+
+    /* scaling */
+    transform: scale(1.2); /* Adjust the scale factor as needed */
+    transform-origin: center center; /* Ensure it scales from the center */
 }
 
 #array-display {
@@ -158,7 +162,7 @@ h2 {
     margin: 5px;
 }
 
-.array-element, .linkedlist-node {
+.array-element {
     padding: 5px;
     text-align: center;
     font-size: 16px; /* Initial font size for inputs */
@@ -168,6 +172,10 @@ h2 {
     background-color: transparent;
     border: none;
     outline: none;
+}
+
+.linkedlist-node {
+    text-align: center;
 }
 
 .comma {
@@ -188,6 +196,40 @@ h2 {
     font-style: italic;
 }
 
+/* Tree stuff */
+
+/* Tree Node and Structure Styling */
+.tree-node {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.tree-node-input {
+    width: 40px;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+.children-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.tree-branch-left, .tree-branch-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tree-branch-left::before, .tree-branch-right::before {
+    content: '';
+    width: 2px;
+    height: 20px;
+    background-color: black;
+    margin-bottom: 10px;
+}
 /* Responsive for Mobile Devices
 @media (max-width: 960px) {
     .navbar__container {
