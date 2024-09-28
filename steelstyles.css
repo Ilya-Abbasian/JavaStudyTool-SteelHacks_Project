@@ -1,0 +1,205 @@
+/* Basic Body Styling */
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: rgb(61, 63, 65);
+    margin: 0;
+    padding: 0;
+}
+
+/* Title Styling */
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: black;
+    cursor: pointer;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #003594;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 50px;
+}
+
+#navbar__logo {
+    color: #FFB81C;
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+}
+
+.navbar__btn {
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.navbar__btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #959595;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #FFB81C;
+    color: #fcf7f7;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+/* Input Container Styling */
+.input-container {
+    margin: 20px auto; 
+    padding: 15px; 
+    background-color: #e9ecef; 
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+    max-width: 550px;
+    width: 100%; 
+    justify-content: center;
+}
+
+#array-length, #array-type {
+    width: 90px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Array Container Styling */
+.array-container, .linkedlist-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    margin-top: 20px;
+}
+
+#array-display {
+    display: flex;
+    flex-direction: column; /* Stack the arrays vertically */
+    align-items: center; /* Align items to the start (left) */
+    gap: 10px; /* Add space between arrays */
+}
+
+.bracketed-array-container {
+    display: inline-flex;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 10px;
+    /* border: 2px solid #ffffff; */
+}
+
+/* Left and Right Brackets Styling */
+.bracket {
+    font-size: 24px;
+    /* font-weight: bold; */
+    font-style: italic;
+    position: relative;
+    top: -12px;
+    margin-left: -15px; /* Adjust this value to move the left bracket closer */
+    margin-right: -15px; /* Adjust this value to move the right bracket closer */
+}
+
+/* Array Element Container Styling */
+.array-element-container {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.array-element, .linkedlist-node {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px; /* Initial font size for inputs */
+    box-sizing: content-box; /* this was the big save */
+    min-width: 40px; /* Minimum width to prevent the input from being too small */
+    height: 30px; /* Adjust to suit the overall design */
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.comma {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.array-element:focus {
+    outline: none;
+}
+
+/* Styling for the index below each element */
+.array-index {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Responsive for Mobile Devices
+@media (max-width: 960px) {
+    .navbar__container {
+        flex-direction: column;
+    }
+
+    .navbar__menu {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+} */
