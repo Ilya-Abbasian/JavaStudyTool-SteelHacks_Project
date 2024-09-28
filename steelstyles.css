@@ -14,6 +14,7 @@ h1 {
 
 h2 {
     text-align: center;
+    animation: fadeIn 3s;
 }
 
 .close {
@@ -102,6 +103,7 @@ h2 {
     max-width: 550px;
     width: 100%; 
     justify-content: center;
+    animation: fadeIn 5s;
 }
 
 #array-length, #array-type {
@@ -153,6 +155,7 @@ h2 {
     margin-left: 5000px; /* Adjust this value to move the left bracket closer */
     margin-right: 5000px; /* This is not doing anaything*/
 }
+
 
 /* Array Element Container Styling */
 .array-element-container {
@@ -273,3 +276,18 @@ h2 {
         text-align: center;
     }
 } */
+
+/* animation for array text */
+.fade-in-text {
+    font-family: Arial;
+    font-size: 18px;
+    animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  
+  
