@@ -49,6 +49,14 @@ h2 {
     padding: 0 50px;
 }
 
+#image {
+    margin-left: 100px; /* Adjust this value to move it right */
+    margin-top: -20px; /* Add a negative value to move it up */}
+
+#image img {
+    display: block; /* Ensures that the image is treated as a block-level element */
+}
+
 #navbar__logo {
     color: #FFB81C;
     font-size: 2rem;
@@ -325,8 +333,8 @@ h2 {
 }
 
 
-@keyframes rotate {
+/* @keyframes rotate {
     100%{transform: rotateZ(360deg)}
-}
+} */
 
   
