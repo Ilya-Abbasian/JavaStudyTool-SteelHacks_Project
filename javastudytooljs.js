@@ -105,62 +105,35 @@ document.getElementById("clear-all-btn").addEventListener("click", function() {
 
 // Create interactive linked list and make it draggable
 document.getElementById("create-linkedlist-btn").addEventListener("click", function() {
-    const length = parseInt(document.getElementById("linkedlist-length").value);
-    const type = document.getElementById("linkedlist-type").value;
+    const value = document.getElementById("linkedlist-value").value; // Get the node value
     const linkedlistDisplay = document.getElementById("linkedlist-display");
-
-    let linkedList = [];
-    for (let i = 0; i < length; i++) {
-        if (type === "int") {
-            linkedList.push(0);
-        } else if (type === "String") {
-            linkedList.push("");
-        } else if (type === "boolean") {
-            linkedList.push(false);
-        }
-    }
 
     const linkedListContainer = document.createElement("div");
     linkedListContainer.classList.add("linkedlist-container");
     linkedListContainer.setAttribute("draggable", "true");
 
-    linkedList.forEach((item, index) => {
-        const container = document.createElement("div");
-        const inputField = document.createElement("input");
-        inputField.type = "text";
-        inputField.value = item;
-        inputField.classList.add("linkedlist-node");
+    const container = document.createElement("div");
+    const inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.value = value;
+    inputField.classList.add("linkedlist-node");
 
-        inputField.setAttribute("size", inputField.value.length + 1);
-        inputField.addEventListener("input", function() {
-            inputField.setAttribute("size", this.value.length + 1);
-            if (type === "int") {
-                linkedList[index] = parseInt(this.value) || 0;
-            } else if (type === "String") {
-                linkedList[index] = this.value;
-            } else if (type === "boolean") {
-                linkedList[index] = this.value.toLowerCase() === 'true';
-            }
-        });
-
-        container.appendChild(inputField);
-
-        linkedListContainer.appendChild(container);
-
-        if (index < length - 1) {
-            const arrow = document.createElement("span");
-            arrow.textContent = "→";
-            arrow.classList.add("arrow");
-            linkedListContainer.appendChild(arrow);
-        }
+    inputField.setAttribute("size", inputField.value.length + 1);
+    inputField.addEventListener("input", function() {
+        inputField.setAttribute("size", this.value.length + 1);
     });
 
-    linkedListContainer.style.padding = "10px";
-    linkedListContainer.style.display = "flex";
-    linkedListContainer.style.alignItems = "center";
-    linkedListContainer.style.justifyContent = "center";
-    linkedListContainer.style.marginTop = "10px";
+    container.appendChild(inputField);
+    linkedListContainer.appendChild(container);
 
+    if (linkedlistDisplay.children.length > 0) {
+        const arrow = document.createElement("span");
+        arrow.textContent = "→";
+        arrow.classList.add("arrow");
+        linkedListContainer.appendChild(arrow);
+    }
+
+    linkedListContainer.appendChild(container);
     linkedlistDisplay.appendChild(linkedListContainer);
 });
 
@@ -170,107 +143,28 @@ document.getElementById("clear-linklist-btn").addEventListener("click", function
     linkedlistDisplay.innerHTML = ''; // Clear the entire display
 });
 
-// Binary Search Tree Node class
-class TreeNode {
-    constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
-    }
-}
-
-// Function to insert node into the tree
-function insertNode(root, value) {
-    if (value < root.value) {
-        if (root.left === null) {
-            root.left = new TreeNode(value);
-        } else {
-            insertNode(root.left, value);
-        }
-    } else {
-        if (root.right === null) {
-            root.right = new TreeNode(value);
-        } else {
-            insertNode(root.right, value);
-        }
-    }
-}
-
-// Function to create tree elements dynamically in the DOM
-function createTreeNodeElement(value) {
-    const nodeElement = document.createElement("div");
-    nodeElement.classList.add("tree-node");
-    
-    const inputField = document.createElement("input");
-    inputField.type = "text";
-    inputField.value = value;
-    inputField.disabled = true;
-    inputField.classList.add("tree-node-input");
-
-    nodeElement.appendChild(inputField);
-    return nodeElement;
-}
-
-// Function to render the tree in the DOM
-function renderTree(tree, parentElement) {
-    if (!tree) return;
-
-    // Create a main tree container for alignment
-    const treeContainer = document.createElement("div");
-    treeContainer.classList.add("tree-container");
-
-    const nodeElement = createTreeNodeElement(tree.value);
-    treeContainer.appendChild(nodeElement);
-
-    if (tree.left || tree.right) {
-        const childrenContainer = document.createElement("div");
-        childrenContainer.classList.add("children-container");
-        treeContainer.appendChild(childrenContainer);
-
-        // Create a container for left and right branches
-        const leftBranch = document.createElement("div");
-        const rightBranch = document.createElement("div");
-
-        if (tree.left) {
-            leftBranch.classList.add("tree-branch-left");
-            renderTree(tree.left, leftBranch);
-        }
-
-        if (tree.right) {
-            rightBranch.classList.add("tree-branch-right");
-            renderTree(tree.right, rightBranch);
-        }
-
-        childrenContainer.appendChild(leftBranch);
-        childrenContainer.appendChild(rightBranch);
-    }
-
-    parentElement.appendChild(treeContainer); // Append the treeContainer to the parent
-}
-
-// Initialize tree root as null
-let treeRoot = null;
-
-// Handle adding nodes to the tree
+// Create interactive binary tree and display it
 document.getElementById("add-node-btn").addEventListener("click", function() {
-    const value = parseInt(document.getElementById("tree-value").value);
-    if (isNaN(value)) return;
+    const value = parseInt(document.getElementById("tree-value").value); // Get the node value
+    const treeDisplay = document.getElementById("tree-display");
 
-    // Check if root is null
-    if (treeRoot === null) {
-        treeRoot = new TreeNode(value); // Create root node
+    const treeNode = document.createElement("div");
+    treeNode.classList.add("tree-node");
+    treeNode.textContent = value;
+
+    if (treeDisplay.children.length === 0) {
+        treeDisplay.appendChild(treeNode); // Add first node
     } else {
-        insertNode(treeRoot, value); // Insert new value into the tree
+        // Logic to insert the new node into the tree goes here
+        // For simplicity, we are just adding to the end for now
+        treeDisplay.appendChild(treeNode);
     }
 
-    const treeDisplay = document.getElementById("tree-display");
-    treeDisplay.innerHTML = ''; // Clear existing tree display
-    renderTree(treeRoot, treeDisplay); // Render updated tree
+    document.getElementById("tree-value").value = ""; // Clear input field
 });
 
-// Clear the tree
+// Clear all nodes from the tree
 document.getElementById("clear-tree-btn").addEventListener("click", function() {
-    treeRoot = null; // Reset the tree root
     const treeDisplay = document.getElementById("tree-display");
     treeDisplay.innerHTML = ''; // Clear the entire display
 });

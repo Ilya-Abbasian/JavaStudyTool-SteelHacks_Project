@@ -14,7 +14,7 @@ h1 {
 
 h2 {
     text-align: center;
-    animation: fadeIn 3s;
+    animation: fadeIn 2s;
 }
 
 .close {
@@ -151,9 +151,8 @@ h2 {
     /* font-weight: bold; */
     font-style: italic;
     position: relative;
-    top: -10px;
-    margin-left: 5000px; /* Adjust this value to move the left bracket closer */
-    margin-right: 5000px; /* This is not doing anaything*/
+    top: -9px;
+    margin: 0 -12px;
 }
 
 
@@ -247,16 +246,18 @@ h2 {
 .linkedlist-container {
     display: flex;
     justify-content: center;
-    margin: 10px;
+    margin: -4px;
 }
 
-.bracket {
-    margin: 0 5px;
-}
 
 .array-index,
 .arrow {
-    margin: 0 5px;
+    margin: 0px;
+}
+
+.arrow {
+    padding: 0px; /* Remove padding if any */
+    font-size: 24px; /* Make the arrow larger/longer */
 }
 
 
@@ -281,7 +282,7 @@ h2 {
 .fade-in-text {
     font-family: Arial;
     font-size: 18px;
-    animation: fadeIn 5s;
+    animation: fadeIn 2s;
 }
 
 @keyframes fadeIn {

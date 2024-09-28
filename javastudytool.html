@@ -34,13 +34,9 @@
     <!-- Section for the Array -->
     <section id="array-section" style="display: none;">
         <div class="fade-in-text">
-            <h2>What Kind of Array would you like to Create</h2>
+            <h2>Create an Interactive Array!</h2>
         </div>
-        <!-- <h2>What kind of array would you like to create?</h2> -->
         <div class="input-container">
-            <label for="array-length">Length:</label>
-            <input type="number" id="array-length" placeholder="Enter length" />
-            
             <label for="array-type">Type:</label>
             <select id="array-type">
                 <option value="int">int</option>
@@ -48,6 +44,9 @@
                 <option value="boolean">boolean</option>
             </select>
             
+            <label for="array-length">Length:</label>
+            <input type="number" id="array-length" placeholder="Enter length" />
+
             <button id="create-array-btn">Create Array</button>
             <button id="clear-all-btn">Clear All</button>
         </div>
@@ -57,30 +56,23 @@
 
     <!-- Section for the LinkedList -->
     <section id="linkedlist-section" style="display: none;">
-        <div class="fade-in-text"></div>
-            <h2>Create an Interactive Linked List</h2>
+        <div class="fade-in-text">
+            <h2>Create an Interactive LinkedList!</h2>
         </div>
-        <!-- <h2>Create an Interactive Linked List</h2> -->
         <div class="input-container">
-            <label for="linkedlist-length">Length:</label>
-            <input type="number" id="linkedlist-length" placeholder="Enter length" />
+            <label for="linkedlist-value">Node Value:</label>
+            <input type="text" id="linkedlist-value" placeholder="Enter node value" />
 
-            <label for="linkedlist-type">Type:</label>
-            <select id="linkedlist-type">
-                <option value="int">int</option>
-                <option value="String">String</option>
-                <option value="boolean">boolean</option>
-            </select>
-
-            <button id="create-linkedlist-btn">Create LinkedList</button>
+            <button id="create-linkedlist-btn">Add Node</button>
             <button id="clear-linklist-btn">Clear All</button>
         </div>
         
         <div id="linkedlist-display" class="linkedlist-container"></div>
     </section>
+    
     <!-- Section for the Tree -->
     <section id="tree-section" style="display: none;">
-        <h2>Create an Interactive Binary Tree</h2>
+        <h2>Create an Interactive Binary Tree!</h2>
         <div class="input-container">
             <label for="tree-value">Enter Initial Value:</label>
             <input type="number" id="tree-value" placeholder="Enter initial value" />
