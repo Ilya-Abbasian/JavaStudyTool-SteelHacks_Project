@@ -290,5 +290,43 @@ h2 {
     100% { opacity: 1; }
   }
 
-  
+#image {
+    width: 1100px;
+    height: 80px;
+    animation-name: rotate;
+    animation-duration: 2s;
+}
+
+
+#array-display {
+    animation-name: slideUp;
+    animation-duration: 2s;
+}
+
+
+#linkedlist-display {
+    animation-name: slideUp;
+    animation-duration: 2s;
+}
+
+
+#roc-talks {
+    color:#ebc10a;
+}
+
+
+@keyframes slideRight {
+    from{transform: translateX(1000px)}
+}
+
+
+@keyframes slideUp {
+    from{transform: translateY(1000px)}    
+}
+
+
+@keyframes rotate {
+    100%{transform: rotateZ(360deg)}
+}
+
   
