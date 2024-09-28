@@ -1,7 +1,7 @@
 /* Basic Body Styling */
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background-color: rgb(199, 206, 227);
+    background-color: rgb(61, 63, 65);
     margin: 0;
     padding: 0;
 }
@@ -30,7 +30,7 @@ h2 {
 
 /* Navbar Styling */
 .navbar {
-    background-color: #000;
+    background-color: #003594;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -49,7 +49,7 @@ h2 {
 }
 
 #navbar__logo {
-    color: #fff;
+    color: #FFB81C;
     font-size: 2rem;
     text-decoration: none;
     cursor: pointer;
@@ -76,14 +76,14 @@ h2 {
 .button {
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #676767;
+    background-color: #959595;
     color: #fff;
     text-decoration: none;
     transition: transform 0.2s ease-in-out, background-color 0.3s ease;
 }
 
 .button:hover {
-    background-color: #e0b611;
+    background-color: #FFB81C;
     color: #fcf7f7;
     transform: scale(1.1);
     transition: transform 0.2s ease-in-out, background-color 0.3s ease;
@@ -114,7 +114,7 @@ h2 {
 }
 
 /* Array Container Styling */
-.array-container {
+.array-container, .linkedlist-container {
     display: flex;
     gap: 10px;
     justify-content: center;
@@ -158,7 +158,7 @@ h2 {
     margin: 5px;
 }
 
-.array-element {
+.array-element, .linkedlist-node {
     padding: 5px;
     text-align: center;
     font-size: 16px; /* Initial font size for inputs */
