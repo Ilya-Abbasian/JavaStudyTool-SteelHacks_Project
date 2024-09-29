@@ -198,6 +198,10 @@ h2 {
     outline: none;
 }
 
+#array-initialization-code {
+    text-align: center;
+}
+
 .linkedlist-node {
     text-align: center;
 }
@@ -238,24 +242,6 @@ h2 {
     font-size: 24px; /* Make the arrow larger/longer */
 }
 
-
-
-/* Responsive for Mobile Devices
-@media (max-width: 960px) {
-    .navbar__container {
-        flex-direction: column;
-    }
-
-    .navbar__menu {
-        flex-direction: column;
-    }
-
-    .button {
-        width: 100%;
-        text-align: center;
-    }
-} */
-
 /* animation for array text */
 .fade-in-text {
     font-family: Arial;
@@ -268,8 +254,6 @@ h2 {
     100% { opacity: 1; }
   }
 
-
-
 #array-display {
     animation-name: slideUp;
     animation-duration: 2s;
@@ -281,10 +265,6 @@ h2 {
     animation-duration: 2s;
 }
 
-
-#roc-talks {
-    color:#ebc10a;
-}
 
 
 @keyframes slideRight {

@@ -1,22 +1,15 @@
-// Show array section when the button is clicked
+// upon clicking array button:
 document.getElementById("array-btn").addEventListener("click", function() {
     document.getElementById("array-section").style.display = "block";
     document.getElementById("linkedlist-section").style.display = "none";
     document.getElementById("tree-section").style.display = "none"; // Hide tree section
 });
 
-// Show linked list section when the button is clicked
+// upon clicking linkedlist button:
 document.getElementById("linkedlist-btn").addEventListener("click", function() {
     document.getElementById("linkedlist-section").style.display = "block";
     document.getElementById("array-section").style.display = "none";
     document.getElementById("tree-section").style.display = "none"; // Hide tree section
-});
-
-// Show tree section when the button is clicked
-document.getElementById("tree-btn").addEventListener("click", function() {
-    document.getElementById("tree-section").style.display = "block";
-    document.getElementById("array-section").style.display = "none";
-    document.getElementById("linkedlist-section").style.display = "none"; // Hide other sections
 });
 
 // Create interactive array and make it draggable
@@ -95,12 +88,34 @@ document.getElementById("create-array-btn").addEventListener("click", function()
     arrayContainer.style.marginTop = "10px";
 
     arrayDisplay.appendChild(arrayContainer);
+
+    // Generate the Java initialization code
+    let initializationCode;
+    switch (type) {
+        case 'int':
+            initializationCode = `int[] myArray = new int[${length}];`;
+            break;
+        case 'String':
+            initializationCode = `String[] myArray = new String[${length}];`;
+            break;
+        case 'boolean':
+            initializationCode = `boolean[] myArray = new boolean[${length}];`;
+            break;
+        default:
+            initializationCode = '';
+    }
+
+    // Display the initialization code
+    const codeDisplay = document.getElementById('array-initialization-code');
+    codeDisplay.innerHTML = `<pre>${initializationCode}</pre>`;
 });
 
 // Clear all arrays
 document.getElementById("clear-all-btn").addEventListener("click", function() {
     const arrayDisplay = document.getElementById("array-display");
     arrayDisplay.innerHTML = ''; // Clear the entire display
+    const codeDisplay = document.getElementById('array-initialization-code');
+    codeDisplay.innerHTML = ''; // Clear the initialization code display
 });
 
 // Create interactive linked list and make it draggable
@@ -141,30 +156,4 @@ document.getElementById("create-linkedlist-btn").addEventListener("click", funct
 document.getElementById("clear-linklist-btn").addEventListener("click", function() {
     const linkedlistDisplay = document.getElementById("linkedlist-display");
     linkedlistDisplay.innerHTML = ''; // Clear the entire display
-});
-
-// Create interactive binary tree and display it
-document.getElementById("add-node-btn").addEventListener("click", function() {
-    const value = parseInt(document.getElementById("tree-value").value); // Get the node value
-    const treeDisplay = document.getElementById("tree-display");
-
-    const treeNode = document.createElement("div");
-    treeNode.classList.add("tree-node");
-    treeNode.textContent = value;
-
-    if (treeDisplay.children.length === 0) {
-        treeDisplay.appendChild(treeNode); // Add first node
-    } else {
-        // Logic to insert the new node into the tree goes here
-        // For simplicity, we are just adding to the end for now
-        treeDisplay.appendChild(treeNode);
-    }
-
-    document.getElementById("tree-value").value = ""; // Clear input field
-});
-
-// Clear all nodes from the tree
-document.getElementById("clear-tree-btn").addEventListener("click", function() {
-    const treeDisplay = document.getElementById("tree-display");
-    treeDisplay.innerHTML = ''; // Clear the entire display
 });
