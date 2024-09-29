@@ -186,7 +186,7 @@ toolbar.addEventListener('change', e => {
     }
 
     if(e.target.id === 'lineWidth') {
-        lineWidth = e.target.value;
+        lineWidth = parseInt(e.target.value);
     }
 
 });
@@ -199,14 +199,15 @@ const draw = (e) => {
     ctx.lineWidth = lineWidth;
     ctx.lineCap = 'round';
 
-    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY);
+    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
     ctx.stroke();
 }
 
 canvas.addEventListener('mousedown', (e) => {
     isPainting = true;
-    startX = e.clientX;
-    startY = e.clientY;
+    startX = e.clientX - canvasOffsetX;
+    startY = e.clientY - canvasOffsetY;
+    ctx.moveTo(startX, startY);
 });
 
 canvas.addEventListener('mouseup', e => {
