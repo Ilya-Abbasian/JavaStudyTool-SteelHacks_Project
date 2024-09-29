@@ -374,4 +374,25 @@ canvas.drawing-enabled {
     100%{transform: rotateZ(360deg)}
 } */
 
+
+/* Professor Finder Styles */
+#professor-finder {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  #person-results {
+    font-size: 0.9em;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  #person-results ul {
+    padding-left: 15px;
+    margin: 5px 0;
+  }
+  
+  #person-results li {
+    margin-bottom: 3px;
+  }
   
