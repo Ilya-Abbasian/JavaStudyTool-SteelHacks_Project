@@ -32,6 +32,16 @@ h2 {
     top: 100px; /* Adjust the canvas to not overlap the toolbar */
 }
 
+#canvas {
+    position: absolute; /* Overlay the canvas */
+    top: 0; /* Align to the top of the container */
+    left: 0; /* Align to the left of the container */
+    width: 100%; /* Take full width of the container */
+    height: 100%; /* Take full height of the container */
+    pointer-events: auto; /* Allow interaction for drawing */
+    z-index: 10; /* Ensure it is above the array elements */
+}
+
 #toolbar {
     position: fixed;
     top: 15;
@@ -77,13 +87,21 @@ h2 {
     cursor: pointer;
 }
 
-#drawingCanvas {
+#drawing-canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     z-index: -1; /* Keeps canvas behind all content */
+}
+
+.drawing-canvas {
+    position: absolute;
+    top: 0; /* Adjust as needed */
+    left: 0; /* Adjust as needed */
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Ensure it can capture drawing events */
 }
 
 .drawing-board {
@@ -220,6 +238,7 @@ canvas.drawing-enabled {
     padding: 10px;
     position: relative;
     margin-top: 20px;
+    border: none;
 
     /* scaling */
     transform: scale(1.2); /* Adjust the scale factor as needed */

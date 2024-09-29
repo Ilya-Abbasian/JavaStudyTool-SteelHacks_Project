@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaStudyTool</title>
+    <title>Java Study Tool</title>
     <link rel="stylesheet" href="steelstyles.css">
 </head>
 <body>
@@ -29,7 +29,7 @@
                 </ul>
             </div>
         </nav>
-            <!-- kyle's stuff for the canvas -->
+        <!-- Drawing Canvas Section -->
         <section class="canvas">
             <div id="toolbar">
                 <h1>Draw</h1>
@@ -38,7 +38,7 @@
                 <label for="lineWidth">Line Width</label>
                 <input id="lineWidth" name='lineWidth' type="number" value="5" min="1">
                 <button id="clear">Clear</button>
-                <button id="enable-draw">Enable Drawing</button> <!-- New button -->
+                <button id="enable-draw">Enable Drawing</button>
             </div>
             <div class="drawing-board">
                 <canvas id="drawing-board"></canvas>
@@ -46,28 +46,24 @@
         </section>            
     </header>
 
-
-
     <!-- Section for the Array -->
     <section id="array-section" style="display: none;">
         <div class="fade-in-text">
             <h2>Create an Interactive Array!</h2>
         </div>
         <div class="input-container">
+            
             <label for="array-type">Type:</label>
             <select id="array-type">
                 <option value="int">int</option>
                 <option value="String">String</option>
                 <option value="boolean">boolean</option>
             </select>
-            
             <label for="array-length">Length:</label>
             <input type="number" id="array-length" placeholder="Enter length" />
-
             <button id="create-array-btn">Create Array</button>
             <button id="clear-all-btn">Clear All</button>
         </div>
-
         <div id="array-initialization-code" class="array-initialization-container"></div>
         <div id="array-display" class="array-container"></div>
     </section>
@@ -78,17 +74,15 @@
             <h2>Create an Interactive LinkedList!</h2>
         </div>
         <div class="input-container">
+            <canvas id="canvas"></canvas>
+
             <label for="linkedlist-value">Node Value:</label>
             <input type="text" id="linkedlist-value" placeholder="Enter node value" />
-
             <button id="create-linkedlist-btn">Add Node</button>
             <button id="clear-linklist-btn">Clear All</button>
         </div>
-        
         <div id="linkedlist-display" class="linkedlist-container"></div>
     </section>
-
-
 
     <script src="javastudytooljs.js"></script>
 </body>

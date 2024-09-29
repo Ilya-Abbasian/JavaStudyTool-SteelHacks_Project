@@ -1,3 +1,4 @@
+
 // upon clicking array button:
 document.getElementById("array-btn").addEventListener("click", function() {
     document.getElementById("array-section").style.display = "block";
@@ -164,9 +165,10 @@ const ctx = canvas.getContext('2d');
 let isDrawingEnabled = false; // Drawing is disabled by default
 
 // Resizing the canvas
+// Resizing the canvas
 function resizeCanvas() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 100; // Leave space for the toolbar
+    canvas.height = window.innerHeight; // Remove the offset for the toolbar
 }
 
 window.addEventListener('resize', resizeCanvas);
@@ -203,13 +205,14 @@ document.getElementById('lineWidth').addEventListener('change', e => {
     lineWidth = parseInt(e.target.value);
 });
 
+// Update the draw function to use the original mouse coordinates
 const draw = (e) => {
     if (!isPainting || !isDrawingEnabled) return; // Draw only when painting and enabled
 
     ctx.lineWidth = lineWidth;
     ctx.lineCap = 'round';
 
-    ctx.lineTo(e.clientX, e.clientY - 100); // Adjust to account for toolbar height
+    ctx.lineTo(e.clientX, e.clientY); // Remove offset adjustment here
     ctx.stroke();
 };
 
@@ -218,7 +221,7 @@ canvas.addEventListener('mousedown', (e) => {
 
     isPainting = true;
     startX = e.clientX;
-    startY = e.clientY - 100; // Adjust for toolbar
+    startY = e.clientY; // No offset adjustment
     ctx.moveTo(startX, startY);
 });
 
@@ -228,3 +231,4 @@ canvas.addEventListener('mouseup', () => {
 });
 
 canvas.addEventListener('mousemove', draw);
+
