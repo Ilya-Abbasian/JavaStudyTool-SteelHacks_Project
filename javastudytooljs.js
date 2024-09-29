@@ -160,75 +160,71 @@ document.getElementById("clear-linklist-btn").addEventListener("click", function
 
 //--------------------------------
 const canvas = document.getElementById('drawing-board');
-const toolbar = document.getElementById('toolbar');
 const ctx = canvas.getContext('2d');
+let isDrawingEnabled = false; // Drawing is disabled by default
 
+// Resizing the canvas
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight - 100; // Leave space for the toolbar
+}
 
-const canvasOffsetX = canvas.offsetLeft;
-const canvasOffsetY = canvas.offsetTop;
-
-
-canvas.width = window.innerWidth - canvasOffsetX;
-canvas.height = window.innerHeight - canvasOffsetY;
-
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();  // Call this to set the size initially
 
 let isPainting = false;
 let lineWidth = 5;
 let startX;
 let startY;
 
-
-toolbar.addEventListener('click', e => {
-    if (e.target.id === 'clear') {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+// Enable drawing functionality when the button is pressed
+// Enable drawing functionality when the button is pressed
+document.getElementById('enable-draw').addEventListener('click', () => {
+    isDrawingEnabled = !isDrawingEnabled; // Toggle drawing state
+    
+    if (isDrawingEnabled) {
+        document.getElementById('enable-draw').textContent = 'Disable Drawing';
+        canvas.style.pointerEvents = 'auto'; // Enable canvas interaction
+    } else {
+        document.getElementById('enable-draw').textContent = 'Enable Drawing';
+        canvas.style.pointerEvents = 'none'; // Disable canvas interaction
     }
 });
 
-
-toolbar.addEventListener('change', e => {
-    if(e.target.id === 'stroke') {
-        ctx.strokeStyle = e.target.value;
-    }
-
-
-    if(e.target.id === 'lineWidth') {
-        lineWidth = parseInt(e.target.value);
-    }
-
-
+document.getElementById('clear').addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
 
+document.getElementById('stroke').addEventListener('change', e => {
+    ctx.strokeStyle = e.target.value;
+});
+
+document.getElementById('lineWidth').addEventListener('change', e => {
+    lineWidth = parseInt(e.target.value);
+});
 
 const draw = (e) => {
-    if(!isPainting) {
-        return;
-    }
-
+    if (!isPainting || !isDrawingEnabled) return; // Draw only when painting and enabled
 
     ctx.lineWidth = lineWidth;
     ctx.lineCap = 'round';
 
-
-    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
+    ctx.lineTo(e.clientX, e.clientY - 100); // Adjust to account for toolbar height
     ctx.stroke();
-}
-
+};
 
 canvas.addEventListener('mousedown', (e) => {
+    if (!isDrawingEnabled) return; // Only allow drawing if enabled
+
     isPainting = true;
-    startX = e.clientX - canvasOffsetX;
-    startY = e.clientY - canvasOffsetY;
+    startX = e.clientX;
+    startY = e.clientY - 100; // Adjust for toolbar
     ctx.moveTo(startX, startY);
 });
 
-
-canvas.addEventListener('mouseup', e => {
+canvas.addEventListener('mouseup', () => {
     isPainting = false;
-    ctx.stroke();
     ctx.beginPath();
 });
 
-
 canvas.addEventListener('mousemove', draw);
-
-

@@ -29,14 +29,19 @@ h2 {
 .canvas {
     height: 100%;
     display: flex;
+    top: 100px; /* Adjust the canvas to not overlap the toolbar */
 }
 
 #toolbar {
+    position: fixed;
+    top: 15;
+    left: 0;
     display: flex;
     flex-direction: column;
     padding: 5px;
     width: 100px;
     background-color: #26334b;
+    z-index: 1; /* Make sure the toolbar is above the canvas */
 }
 
 #toolbar * {
@@ -79,6 +84,32 @@ h2 {
     width: 100vw;
     height: 100vh;
     z-index: -1; /* Keeps canvas behind all content */
+}
+
+.drawing-board {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow interaction with underlying elements */
+}
+
+#drawing-board {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Transparent background */
+    z-index: -1; /* Behind other content by default */
+    pointer-events: none; /* Disabled by default */
+}
+
+/* When drawing is enabled */
+canvas.drawing-enabled {
+    pointer-events: auto; /* Enable pointer events when drawing */
+    z-index: 100; /* Ensure canvas is on top */
 }
 
 /* Navbar Styling */
