@@ -1,0 +1,22 @@
+{
+  "name": "java-study-tool",
+  "version": "1.0.0",
+  "description": "Interactive Java Study Tool",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "java",
+    "study",
+    "tool",
+    "interactive"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.20.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  }
+}

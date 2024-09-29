@@ -1,0 +1,486 @@
+/* Basic Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: rgb(186, 193, 201);
+}
+
+/* Title Styling */
+h1 {
+    background: #7F7FD5;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to right,  #91EAE4, #86A8E7, #7F7FD5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* font-size: 36px;
+    text-align: center; */
+}
+
+h2 {
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+.canvas {
+    height: 100%;
+    display: flex;
+    top: 100px; /* Adjust the canvas to not overlap the toolbar */
+}
+
+#canvas {
+    position: absolute; /* Overlay the canvas */
+    top: 0; /* Align to the top of the container */
+    left: 0; /* Align to the left of the container */
+    width: 100%; /* Take full width of the container */
+    height: 100%; /* Take full height of the container */
+    pointer-events: auto; /* Allow interaction for drawing */
+    z-index: 10; /* Ensure it is above the array elements */
+}
+
+#toolbar {
+    position: fixed;
+    top: 15;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100px;
+    background-color: #26334b;
+    z-index: 1; /* Make sure the toolbar is above the canvas */
+}
+
+#toolbar * {
+    margin-bottom: 6px;
+}
+
+#toolbar label {
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+#toolbar input {
+    width: 90%;
+}
+
+#toolbar button {
+    background-color: #1565c0;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 2px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: black;
+    cursor: pointer;
+}
+
+#drawing-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Keeps canvas behind all content */
+}
+
+.drawing-canvas {
+    position: absolute;
+    top: 0; /* Adjust as needed */
+    left: 0; /* Adjust as needed */
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Ensure it can capture drawing events */
+}
+
+.drawing-board {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow interaction with underlying elements */
+}
+
+#drawing-board {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Transparent background */
+    z-index: -1; /* Behind other content by default */
+    pointer-events: none; /* Disabled by default */
+}
+
+/* When drawing is enabled */
+canvas.drawing-enabled {
+    pointer-events: auto; /* Enable pointer events when drawing */
+    z-index: 100; /* Ensure canvas is on top */
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #003594;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 50px;
+}
+
+
+#image img {
+    display: block; /* Ensures that the image is treated as a block-level element */
+    top: 100px;
+}
+
+#navbar__logo {
+    color: #FFB81C;
+    font-size: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#navbar__logo img {
+    margin-left: 10px; /* Space between image and text */
+    vertical-align: middle; /* Ensures the image aligns with the text */
+    top: 10px; /* Moves the image up */
+    right: 50px; /* Moves the image to the right */
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+}
+
+.navbar__btn {
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.navbar__btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #959595;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #FFB81C;
+    color: #fcf7f7;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+/* Input Container Styling */
+.input-container {
+    margin: 20px auto; 
+    padding: 15px; 
+    background-color: #e9ecef; 
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+    max-width: 550px;
+    width: 100%; 
+    justify-content: center;
+    animation: fadeIn 5s;
+}
+
+#array-length, #array-type {
+    width: 90px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Array Container Styling */
+.array-container, .linkedlist-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    margin-top: 20px;
+    border: none;
+
+    /* scaling */
+    transform: scale(1.2); /* Adjust the scale factor as needed */
+    transform-origin: center center; /* Ensure it scales from the center */
+}
+
+#array-display {
+    display: flex;
+    flex-direction: column; /* Stack the arrays vertically */
+    align-items: center; /* Align items to the start (left) */
+    gap: 10px; /* Add space between arrays */
+}
+
+.bracketed-array-container {
+    display: inline-flex;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 10px;
+    /* border: 2px solid #ffffff; */
+}
+
+/* Left and Right Brackets Styling */
+.bracket {
+    font-size: 24px;
+    /* font-weight: bold; */
+    font-style: italic;
+    position: relative;
+    top: -9px;
+    margin: 0 -12px;
+}
+
+
+/* Array Element Container Styling */
+.array-element-container {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.array-element {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px; /* Initial font size for inputs */
+    box-sizing: content-box; /* this was the big save */
+    min-width: 40px; /* Minimum width to prevent the input from being too small */
+    height: 30px; /* Adjust to suit the overall design */
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+#array-initialization-code {
+    text-align: center;
+}
+
+.linkedlist-node {
+    text-align: center;
+}
+
+.comma {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.array-element:focus {
+    outline: none;
+}
+
+/* Styling for the index below each element */
+.array-index {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+    text-align: center;
+    font-style: italic;
+}
+
+.bracketed-array-container,
+.linkedlist-container {
+    display: flex;
+    justify-content: center;
+    margin: -4px;
+}
+
+
+.array-index,
+.arrow {
+    margin: 0px;
+}
+
+.arrow {
+    padding: 0px; /* Remove padding if any */
+    font-size: 24px; /* Make the arrow larger/longer */
+}
+
+/* animation for array text */
+.fade-in-text {
+    font-family: Arial;
+    font-size: 18px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+#array-display {
+    animation-name: slideUp;
+    animation-duration: 2s;
+}
+
+
+#linkedlist-display {
+    animation-name: slideUp;
+    animation-duration: 2s;
+}
+
+
+
+@keyframes slideRight {
+    from{transform: translateX(1000px)}
+}
+
+
+@keyframes slideUp {
+    from{transform: translateY(1000px)}    
+}
+
+/* Input Container Styling */
+.input-container {
+    margin: 20px auto; 
+    padding: 15px; 
+    background-color: #e9ecef; 
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+    max-width: 550px;
+    width: 100%; 
+    justify-content: center;
+    animation: fadeIn 5s;
+}
+
+#array-length, #array-type {
+    width: 90px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Array Container Styling */
+.array-container, .linkedlist-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    margin-top: 20px;
+    border: none;
+    transform: scale(1.2);
+    transform-origin: center center;
+}
+
+#array-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.bracketed-array-container {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.bracket {
+    font-size: 24px;
+    font-style: italic;
+    position: relative;
+    top: -9px;
+    margin: 0 -12px;
+}
+
+.array-element-container {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.array-element {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    box-sizing: content-box;
+    min-width: 40px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.comma {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.array-index {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* animation for array text */
+.fade-in-text {
+    font-family: Arial;
+    font-size: 18px;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#array-display, #linkedlist-display {
+    animation-name: slideUp;
+    animation-duration: 2s;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(1000px) }    
+}
+/* @keyframes rotate {
+    100%{transform: rotateZ(360deg)}
+} */
+
+  
