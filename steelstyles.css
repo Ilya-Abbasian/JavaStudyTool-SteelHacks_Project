@@ -29,6 +29,15 @@ h2 {
     cursor: pointer;
 }
 
+#drawingCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Keeps canvas behind all content */
+}
+
 /* Navbar Styling */
 .navbar {
     background-color: #003594;
