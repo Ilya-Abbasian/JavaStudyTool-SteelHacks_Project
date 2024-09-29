@@ -1,4 +1,4 @@
-
+//hi this is a test
 // upon clicking array button:
 document.getElementById("array-btn").addEventListener("click", function() {
     document.getElementById("array-section").style.display = "block";
