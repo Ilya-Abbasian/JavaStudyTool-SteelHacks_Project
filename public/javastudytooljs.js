@@ -322,4 +322,42 @@ function displayMessage(sender, message) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+
+// Person finder functionality
+const personInput = document.getElementById('person-name');
+const findPersonButton = document.getElementById('find-person');
+const personResults = document.getElementById('person-results');
+
+findPersonButton.addEventListener('click', findPerson);
+
+async function findPerson() {
+  const name = personInput.value.trim();
+  if (name === '') return;
+
+  try {
+    const response = await fetch(`http://localhost:5000/find-person?query=${encodeURIComponent(name)}`);
+    const data = await response.json();
+    displayPersonResults(data);
+  } catch (error) {
+    console.error('Error:', error);
+    personResults.textContent = 'An error occurred while searching for the person.';
+  }
+}
+
+function displayPersonResults(results) {
+  personResults.innerHTML = '';
+  if (results.length === 0 || results[0].ERROR) {
+    personResults.textContent = results[0]?.ERROR || 'No persons found.';
+    return;
+  }
+
+  const ul = document.createElement('ul');
+  results.forEach(person => {
+    const li = document.createElement('li');
+    li.textContent = `${person.name} - ${person.email || 'No email available'}`;
+    ul.appendChild(li);
+  });
+  personResults.appendChild(ul);
+}
+
 });
