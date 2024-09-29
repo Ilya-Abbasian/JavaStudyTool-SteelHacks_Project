@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 //hi this is a test
 // upon clicking array button:
 document.getElementById("array-btn").addEventListener("click", function() {
@@ -276,3 +278,48 @@ document.addEventListener('DOMContentLoaded', function() {
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
   });
+// Chat functionality
+const chatInput = document.getElementById('chat-input');
+const sendButton = document.getElementById('send-message');
+const chatMessages = document.getElementById('chat-messages');
+
+sendButton.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+function sendMessage() {
+    const message = chatInput.value;
+    if (message.trim() === '') return;
+
+    displayMessage('User', message);
+
+    fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayMessage('AI', data.response);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        displayMessage('AI', 'Sorry, there was an error processing your request.');
+    });
+
+    chatInput.value = '';
+}
+
+function displayMessage(sender, message) {
+    const messageElement = document.createElement('p');
+    messageElement.textContent = `${sender}: ${message}`;
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+});

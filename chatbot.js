@@ -6,20 +6,19 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 async function runChat(userInput) {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-
     const chat = model.startChat({
       history: [
         {
           role: "user",
-          parts: "You are a helpful assistant for a Java study tool, focusing on data structures like arrays, linked lists, and trees. Provide concise explanations and examples when asked.",
+          parts: [{ text: "You are a helpful assistant for a Java study tool." }]
         },
         {
           role: "model",
-          parts: "Understood. I'm here to assist with Java data structures. How can I help you today?",
-        },
+          parts: [{ text: "Understood. How can I help you with Java today?" }]
+        }
       ],
       generationConfig: {
-        maxOutputTokens: 150,
+        maxOutputTokens: 1000,
       },
     });
 
