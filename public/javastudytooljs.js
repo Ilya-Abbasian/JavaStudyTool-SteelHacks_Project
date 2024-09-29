@@ -335,7 +335,7 @@ async function findPerson() {
   if (name === '') return;
 
   try {
-    const response = await fetch(`http://localhost:5000/find-person?query=${encodeURIComponent(name)}`);
+    const response = await fetch(`http://localhost:5000/api/people?query=${encodeURIComponent(name)}`);
     const data = await response.json();
     displayPersonResults(data);
   } catch (error) {
@@ -354,10 +354,9 @@ function displayPersonResults(results) {
   const ul = document.createElement('ul');
   results.forEach(person => {
     const li = document.createElement('li');
-    li.textContent = `${person.name} - ${person.email || 'No email available'}`;
+    li.textContent = `${person.name} - ${person.Email || 'No email available'}`;
     ul.appendChild(li);
   });
   personResults.appendChild(ul);
 }
-
 });
