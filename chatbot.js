@@ -1,11 +1,10 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+require('dotenv').config();
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
 async function runChat(userInput) {
   try {
-    console.log("Received user input:", userInput);
-    
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
     const chat = model.startChat({
@@ -16,7 +15,7 @@ async function runChat(userInput) {
         },
         {
           role: "model",
-          parts: "Understood. I'm here to assist users with learning about Java data structures, particularly arrays, linked lists, and trees. I'll provide concise explanations and examples. How can I help you today?",
+          parts: "Understood. I'm here to assist with Java data structures. How can I help you today?",
         },
       ],
       generationConfig: {
@@ -26,7 +25,6 @@ async function runChat(userInput) {
 
     const result = await chat.sendMessage(userInput);
     const response = await result.response;
-    console.log("AI response:", response.text());
     return response.text();
   } catch (error) {
     console.error("Error in runChat:", error);

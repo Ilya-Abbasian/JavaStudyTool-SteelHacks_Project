@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const path = require('path');
+const { runChat } = require('./chatbot');
 
 const app = express();
 const server = http.createServer(app);
@@ -18,26 +19,17 @@ app.get('/', (req, res) => {
 
 app.use(express.json());
 
-// Attempt to load the chat functionality
-let runChat;
-try {
-  ({ runChat } = require('./chatbot'));
-  
-  app.post('/chat', async (req, res) => {
-    const { message } = req.body;
-    try {
-      const response = await runChat(message);
-      res.json({ response });
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ error: 'An error occurred' });
-    }
-  });
-
-  console.log('Chat functionality loaded successfully');
-} catch (error) {
-  console.log('Chat functionality not available:', error.message);
-}
+// Chat route
+app.post('/chat', async (req, res) => {
+  const { message } = req.body;
+  try {
+    const response = await runChat(message);
+    res.json({ response });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
 
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
